@@ -4,37 +4,60 @@ const generateMarkdown = require('./utils/generateMarkdown');
 const fs = require('fs');
 const path = require('path');
 const { default: Choices } = require('inquirer/lib/objects/choices');
-const generateHTML = ({email,github})=>
-`<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-  <title>Document</title>
-</head>
-<body>
-  <header class="p-5 mb-4 header bg-light">
-    <div class="container">
-        <li class="list-group-item">My GitHub username is ${github}</li>
-        <li class="list-group-item">Email: ${email}</li></ul>
-        </div>
-      </header>
-    </body>
-    </html>`;
-    
+const { emit } = require('process');
+const generateHTML = require('email', 'github');
+
 
 // TODO: Create an array of questions for user input
 const questions = [
+    {
+        type: 'input',
+        name: 'name',
+        message: 'Welcome to the README generator.   To start, please type your full namee:',
+        validate: nameInput => {
+            if (nameInput) {
+                return true;
+            } else {
+                console.log('Please enter your name.   You must credit yourself for your work');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'Email',
+        message: 'Enter your email address?',
+        validate: emailInput => {
+            if (emailInput) {
+                return true;
+            } else {
+                console.log('If someone has questions this is the best way to contact you');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'GitHub',
+        message: 'Enter your GitHub Username.',
+        validate: githubInput => {
+            if (githubInput) {
+                return true;
+            } else {
+                console.log('Link your GitHub so other users are able to see your other work');
+                return false;
+            }
+        }
+    },
     {
         type: 'input',
         name: 'title',
         message: 'What is the title of your project?',
     },
     {
-    type:'input',
-    name:'description',
-    message: 'Please type in a description of your project.',
+        type: 'input',
+        name: 'description',
+        message: 'Please type in a description of your project.',
     },
     {
         type: 'input',
@@ -42,43 +65,64 @@ const questions = [
         message: 'Please write installation instruction.'
     },
     {
-        type:'input',
+        type: 'input',
         name: 'usage',
         message: 'Please provide instructions and examples so users can use the project'
+    },
+    { 
+        type: 'confirm',
+        name: 'confirmLicenses',
+        message:'Would you like to include a license?',
+        default: false
     },
     {
         type: 'list',
         name: 'license',
         message: 'Please choose your license.',
-        choices: ['none','MIT','Apache','GPL']
+        choices: ['none', 'MIT', 'Apache', 'GPL']
     },
     {
         type: 'input',
-        name: 'Email',
-        message: 'Enter your email address?',
+        name: 'tests',
+        message: 'Please provide instructions on how others can contribut to your project',
     },
- {
-        type: 'input',
-        name: 'GitHub',
-        message: 'Enter your GitHub Username.',
- }
+    {
+        type: 'list',
+        name: 'contributing',
+        message: 'How can others contribute to this project?',
+        validate: contributionInput => {
+            if (contributionInput) {
+                return true;
+            }else{
+                console.log('Please provide instructions on how others can contribute to your project.')
+            }
+        }
+    },
 ];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
     return fs.writeFileSync(path.join(process.cwd(), fileName), data)
- }
+}
 // fs.writeFile('index.html', htmlPageContent, (err) =>
 // err ? console.log(err) : console.log('Successfully created index.html!')
 // );
 // TODO: Create a function to inintialize app
 function init() {
     inquirer
-        .prompt(questions).then((response) => { 
+        .prompt(questions).then((response) => {
             console.log(response)
-            writeToFile('./generatedREADME/README.md', generateMarkdown(response))
-            .then(() => console.log('Successfully wrote to index.html'))
-         }).catch((err) => { console.log(err) })
+            writeToFile('/generatedREADME/README.md',generateMarkdown(response))
+        }).catch((err) => { console.log(err) })
 }
 // Function call to initialize app
-init();
+init()
+.then(userInput =>{
+    return generateMarkdown(userInput);
+})
+.then(readmeInfo => {
+    return writeToFile(readmeInfo);
+})
+.catch(err =>{
+    console.log(err);
+})

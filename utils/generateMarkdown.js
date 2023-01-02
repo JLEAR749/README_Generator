@@ -1,8 +1,11 @@
-function renderQuestionSection(questions){
-  console.log(questions)
-  return `![questions]()`
+function renderQuestionSection(gitHubProfile){
+  console.log(gitHubProfile)
+  return `![questions](https://github.com/gitHubProfile)`
 }
-
+function renderQuestionLink(gitHubProfile){
+  console.log(gitHubProfile)
+  return `(https://github.com/gitHubProfile)`
+}
 
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
@@ -40,15 +43,21 @@ function renderLicenseSection(license) {
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
-## ${data.description}
+  
+${renderLicenseBadge(data.license)}
 
 ## Table Of Contents
+- [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
 - [Contribution](#contribution)
 - [Tests](#tests)
 - [Questions](#questions)
+- [Credits](#credits)
+
+## Description 
+${data.description}
 
 ### Installation
 ${data.installation}
@@ -56,10 +65,7 @@ ${data.installation}
 ### Usage
 ${data.usage}
 
-### License
 ${renderLicenseSection(data.license)}
-${renderLicenseBadge(data.license)}
-${renderLicenseLink(data.license)}
 
 ### Contribution
 ${data.contribution}
@@ -67,13 +73,12 @@ ${data.contribution}
 ### Tests
 ${data.Tests}
 
-## GitHub Profile
-${renderQuestionSection(data.GitHubProfile)}
-${renderQuestionLink(data.GitHubProfile)}
+## Questions
+GitHub: https://github.com/${data.github}
+Email; ${data.EmailAddress}
 
-## Email Address
-${renderQuestionSection(data.EmailAddress)}
-${renderQuestionLink(data.EmailAddress)}
+## Credits
+${data.name}
 `;
 }
 
