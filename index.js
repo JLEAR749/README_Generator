@@ -5,20 +5,18 @@ const fs = require('fs');
 const path = require('path');
 const { default: Choices } = require('inquirer/lib/objects/choices');
 const { emit } = require('process');
-const generateHTML = require('email', 'github');
-
 
 // TODO: Create an array of questions for user input
 const questions = [
     {
         type: 'input',
         name: 'name',
-        message: 'Welcome to the README generator.   To start, please type your full namee:',
+        message: 'Welcome to the README generator.   To start, please type your full name:',
         validate: nameInput => {
             if (nameInput) {
                 return true;
             } else {
-                console.log('Please enter your name.   You must credit yourself for your work');
+                console.log('Please enter your name. You must credit yourself for your work');
                 return false;
             }
         }
@@ -31,7 +29,7 @@ const questions = [
             if (emailInput) {
                 return true;
             } else {
-                console.log('If someone has questions this is the best way to contact you');
+                console.log('If someone has questions this is the best way to contact you.');
                 return false;
             }
         }
@@ -62,29 +60,12 @@ const questions = [
     {
         type: 'input',
         name: 'installation',
-        message: 'Please write installation instruction.'
+        message: 'Please write installation instructions.'
     },
     {
         type: 'input',
         name: 'usage',
-        message: 'Please provide instructions and examples so users can use the project'
-    },
-    { 
-        type: 'confirm',
-        name: 'confirmLicenses',
-        message:'Would you like to include a license?',
-        default: false
-    },
-    {
-        type: 'list',
-        name: 'license',
-        message: 'Please choose your license.',
-        choices: ['none', 'MIT', 'Apache', 'GPL']
-    },
-    {
-        type: 'input',
-        name: 'tests',
-        message: 'Please provide instructions on how others can contribut to your project',
+        message: 'Please provide instructions for usage to assist the user in being able to properly naviagate your project'
     },
     {
         type: 'list',
@@ -93,11 +74,36 @@ const questions = [
         validate: contributionInput => {
             if (contributionInput) {
                 return true;
-            }else{
+            } else {
                 console.log('Please provide instructions on how others can contribute to your project.')
             }
         }
     },
+    {
+        type: 'input',
+        name: 'tests',
+        message: 'Please provide instructions on how others can contribut to your project',
+    },
+    {
+        type: 'confirm',
+        name: 'confirmLicenses',
+        message: 'Would you like to include a license?',
+        default: false
+    },
+    {
+        type: 'list',
+        name: 'license',
+        message: 'Please choose your license.',
+        choices: ['none', 'MIT', 'Apache', 'GPL'],
+        when: ({ confirmLicense }) => {
+            if (confirmLicense) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    },
+
 ];
 
 // TODO: Create a function to write README file
@@ -112,17 +118,8 @@ function init() {
     inquirer
         .prompt(questions).then((response) => {
             console.log(response)
-            writeToFile('/generatedREADME/README.md',generateMarkdown(response))
+            writeToFile('/generatedREADME/README.md', generateMarkdown(response))
         }).catch((err) => { console.log(err) })
 }
 // Function call to initialize app
 init()
-.then(userInput =>{
-    return generateMarkdown(userInput);
-})
-.then(readmeInfo => {
-    return writeToFile(readmeInfo);
-})
-.catch(err =>{
-    console.log(err);
-})
