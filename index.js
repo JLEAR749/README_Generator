@@ -66,15 +66,13 @@ const questions = [
 function writeToFile(fileName, data) {
     return fs.writeFileSync(path.join(process.cwd(), fileName), data)
 }
-fs.writeFile('index.html', htmlPageContent, (err) =>
-err ? console.log(err) : console.log('Success! Please naviagate to the "generatedREADME" folder to see your README!')
-);
 // TODO: Create a function to inintialize app
 function init() {
     inquirer
         .prompt(questions).then((response) => {
             console.log(response)
             writeToFile('/generatedREADME/README.md', generateMarkdown(response))
+            console.log('Sucess! Your README is now under the generatedREADME file.')
         }).catch((err) => { console.log(err) })
 }
 // Function call to initialize app

@@ -5,7 +5,6 @@ function renderLicenseBadge(license) {
   if (license !== 'none') {
     return `![License](https://img.shields.io/badge/License-${license}-blue.svg)`
   }
-  // [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)]
   return ''
 }
 
@@ -37,7 +36,7 @@ function generateMarkdown(data) {
   
   
   ## Table Of Contents
-  *[Description](#description)
+  * [Description](#description)
   * [Installation](#installation)
   * [Usage](#usage)
   * [License](#license)
@@ -65,9 +64,11 @@ ${data.contributing}
 ${data.tests}
 
 ## Questions
-Have questions about this project?
-GitHub: https://github.com/${data.GitHub}
-Email: ${data.Email}
+Have questions about this project? <br>
+
+GitHub: https://github.com/${data.GitHub} <br>
+
+Email: ${data.Email} <br>
 
 ## Credits
 ${data.name}
