@@ -12,14 +12,6 @@ const questions = [
         type: 'input',
         name: 'name',
         message: 'Welcome to the README generator.   To start, please type your full name:',
-        validate: nameInput => {
-            if (nameInput) {
-                return true;
-            } else {
-                console.log('Please enter your name. You must credit yourself for your work');
-                return false;
-            }
-        }
     },
     {
         type: 'input',
@@ -39,27 +31,27 @@ const questions = [
     {
         type: 'input',
         name: 'description',
-        message: 'Please type in a description of your project.',
+        message: 'Enter your project description.',
     },
     {
         type: 'input',
         name: 'installation',
-        message: 'Please write installation instructions.'
+        message: 'What are the instructions for installation?'
     },
     {
         type: 'input',
         name: 'usage',
-        message: 'Please provide instructions for usage to assist the user in being able to properly naviagate your project'
+        message: 'Enter the instructions for useage.'
     },
     {
         type: 'input',
         name: 'contributing',
-        message: 'How can others contribute to this project?',
+        message: 'How others can contribute to this project?',
     },
     {
         type: 'input',
         name: 'tests',
-        message: 'Please provide instructions on how others can contribut to your project',
+        message: 'Describe the tests written for your application and how to use them:'
     },
     {
         type: 'list',
@@ -74,9 +66,9 @@ const questions = [
 function writeToFile(fileName, data) {
     return fs.writeFileSync(path.join(process.cwd(), fileName), data)
 }
-// fs.writeFile('index.html', htmlPageContent, (err) =>
-// err ? console.log(err) : console.log('Successfully created index.html!')
-// );
+fs.writeFile('index.html', htmlPageContent, (err) =>
+err ? console.log(err) : console.log('Success! Please naviagate to the "generatedREADME" folder to see your README!')
+);
 // TODO: Create a function to inintialize app
 function init() {
     inquirer

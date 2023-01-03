@@ -1,4 +1,4 @@
-# Readme Generator
+# README Generator
   
   
   ## Table Of Contents
@@ -12,25 +12,25 @@
   - [Credits](#credits)
   
   ## Description 
-  dsjfldsjf
+  Your GitHub profile is important aspect of your public 
   
   ### Installation
-  hello
+  Before attempting to use this project, have these programs installed on your computer.  
   
   ### Usage
-  no
+  Once software is downloaded and Node packages are initialized, it's time to start!   Within the directory for this project, initalize prompts using the command 'node index.js'.   Follow  the prompts.   A new README file will be generated and placed in the generateREADME folder.
   
-  ## license
-  ![License](https://img.shields.io/badge/License-MIT-blue.svg)
+  
+  
 
 ### Contribution
-no
+If you created an application or package and would like other developers to contribut to it, you will want to add guidelines for others to contribute.
 
 ### Tests
-no
+dfadsf
 
 ## Questions
-GitHub: https://github.com/JLEAR749
+GitHub: https://github.com/JLear749
 Email: iditaroddream@gmail.com
 
 ## Credits
