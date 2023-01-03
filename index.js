@@ -25,27 +25,11 @@ const questions = [
         type: 'input',
         name: 'Email',
         message: 'Enter your email address?',
-        validate: emailInput => {
-            if (emailInput) {
-                return true;
-            } else {
-                console.log('If someone has questions this is the best way to contact you.');
-                return false;
-            }
-        }
     },
     {
         type: 'input',
         name: 'GitHub',
         message: 'Enter your GitHub Username.',
-        validate: githubInput => {
-            if (githubInput) {
-                return true;
-            } else {
-                console.log('Link your GitHub so other users are able to see your other work');
-                return false;
-            }
-        }
     },
     {
         type: 'input',
@@ -68,16 +52,9 @@ const questions = [
         message: 'Please provide instructions for usage to assist the user in being able to properly naviagate your project'
     },
     {
-        type: 'list',
+        type: 'input',
         name: 'contributing',
         message: 'How can others contribute to this project?',
-        validate: contributionInput => {
-            if (contributionInput) {
-                return true;
-            } else {
-                console.log('Please provide instructions on how others can contribute to your project.')
-            }
-        }
     },
     {
         type: 'input',
@@ -85,23 +62,10 @@ const questions = [
         message: 'Please provide instructions on how others can contribut to your project',
     },
     {
-        type: 'confirm',
-        name: 'confirmLicenses',
-        message: 'Would you like to include a license?',
-        default: false
-    },
-    {
         type: 'list',
         name: 'license',
         message: 'Please choose your license.',
         choices: ['none', 'MIT', 'Apache', 'GPL'],
-        when: ({ confirmLicense }) => {
-            if (confirmLicense) {
-                return true;
-            } else {
-                return false;
-            }
-        }
     },
 
 ];

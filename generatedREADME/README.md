@@ -1,35 +1,37 @@
-# README GENERATOR
-## fjsadlfjed
-
-## Table Of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [License](#license)
-- [Contribution](#contribution)
-- [Tests](#tests)
-- [Questions](#questions)
-
-### Installation
-asdfads
-
-### Usage
-dfdasf
-
-### License
-## license
-![License](https://img.shields.io/badge/License-MIT-blue.svg)
-(https://opensource.org/licenses/MIT)
+# Readme Generator
+  
+  
+  ## Table Of Contents
+  - [Description](#description)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [License](#license)
+  - [Contribution](#contribution)
+  - [Tests](#tests)
+  - [Questions](#questions)
+  - [Credits](#credits)
+  
+  ## Description 
+  dsjfldsjf
+  
+  ### Installation
+  hello
+  
+  ### Usage
+  no
+  
+  ## license
+  ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 ### Contribution
-undefined
+no
 
 ### Tests
-undefined
+no
 
-## GitHub Profile
-![questions](https://github.com/gitHubProfile)
-(https://github.com/gitHubProfile)
+## Questions
+GitHub: https://github.com/JLEAR749
+Email: iditaroddream@gmail.com
 
-## Email Address
-![questions](https://github.com/gitHubProfile)
-(https://github.com/gitHubProfile)
+## Credits
+Johannah Lear
